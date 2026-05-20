@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}レストラン検索詳細{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <!-- <h1>レストラン詳細</h1> -->
+        <div class="card mb-3 mx-auto" style="max-width: 540px;">
+        <img src="{{ restaurant.photo }}" class="card-img-top" alt="{{ restaurant.name }}" style="max-width: 540px;">
+        <div class="card-body">
+            <h5 class="card-title">{{ restaurant.name }}</h5>
+            <!-- <p class="card-text">{{ restaurant.access }}</p> -->
+            <p class="card-text">{{ restaurant.address }}</p>
+            <p class="card-text">営業時間: {{ restaurant.open }} - {{ restaurant.close }}</p>
+            <p class="card-text">{{ restaurant.genre }}</p>
+            <p class="card-text">{{ restaurant.budget }}</p>
+            <p><a href="{{ restaurant.url }}" target="_blank" class="btn btn-primary">予約はこちら</a></p>
+        </div>
+        </div>
+
+
+</div>
+
+{% endblock content %}

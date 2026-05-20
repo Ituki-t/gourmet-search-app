@@ -10,3 +10,12 @@ def index(request):
         'restaurants': restaurants,
     }
     return render(request, 'restaurants/index.html', context)
+
+
+def detail(request, restaurant_id):
+    for restaurant in restaurants_list():
+        if restaurant['id'] == restaurant_id:
+            context = {
+                'restaurant': restaurant,
+            }
+            return render(request, 'restaurants/detail.html', context)
