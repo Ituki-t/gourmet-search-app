@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>レストラン一覧</title>
+</head>
+<body>
+{% block content %}
+<h1>レストラン一覧</h1>
+<ul>
+    {% for restaurant in restaurants %}
+        <li>
+            {{ restaurant.name }} : {{ restaurant.address }} : {{ restaurant.genre }} : {{ restaurant.photo }} : {{ restaurant.budget }}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock content %}
+</body>
+</html>

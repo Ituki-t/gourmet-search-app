@@ -11,7 +11,7 @@ def restaurants_list():
     params = {
         'key': api_key,
         'format': 'json',
-        'count': 10,
+        'count': 50, # ここは後から件数を指定できるようにしよう
         'keyword': '東京',
     }
     res = requests.get(api_url, params=params)
