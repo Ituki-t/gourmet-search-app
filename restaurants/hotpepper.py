@@ -22,6 +22,7 @@ def restaurants_list():
     for data in datas['results']['shop']:
         restaurant = {
             'name': data['name'],
+            'access': data['access'],
             'address': data['address'],
             'genre': data['genre']['name'],
             'budget': data['budget']['name'],
