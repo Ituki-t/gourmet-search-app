@@ -1,19 +1,31 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="utf-8">
-    <title>レストラン一覧</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}レストラン検索アプリ{% endblock title %}
+
 {% block content %}
-<h1>レストラン一覧</h1>
-<ul>
+
+<div class="container">
+    <h1>レストラン一覧</h1>
     {% for restaurant in restaurants %}
-        <li>
-            {{ restaurant.name }} : {{ restaurant.address }} : {{ restaurant.genre }} : {{ restaurant.photo }} : {{ restaurant.budget }}
-        </li>
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                <img src="{{ restaurant.photo }}" class="img-fluid rounded-start" alt="{{ restaurant.name }}">
+                </div>
+                <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ restaurant.name }}</h5>
+                    <p class="card-text">{{ restaurant.access }}</p>
+                    <!-- <p class="card-text">{{ restaurant.address }}</p> -->
+                    <!-- <p class="card-text">{{ restaurant.genre }}</p> -->
+                    <p class="card-text">予算: {{ restaurant.budget }}</p>
+                    <p class="card-text"><small class="text-body-secondary">{{ restaurant.genre }}</small></p>
+                </div>
+                </div>
+            </div>
+        </div>
+
     {% endfor %}
-</ul>
+</div>
+
 {% endblock content %}
-</body>
-</html>
