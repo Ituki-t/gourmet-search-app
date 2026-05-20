@@ -23,11 +23,14 @@ def restaurants_list():
         restaurant = {
             'id': data['id'],
             'name': data['name'],
+            'url': data['urls']['pc'],
             'access': data['access'],
             'address': data['address'],
             'genre': data['genre']['name'],
             'budget': data['budget']['name'],
             'photo': data['photo']['pc']['l'],
+            'open': data['open'],
+            'close': data['close'],
         }
         restaurants.append(restaurant)
     return restaurants
