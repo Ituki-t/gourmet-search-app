@@ -1,10 +1,19 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}レストラン検索アプリ{% endblock title %}
 
 {% block content %}
 
 <div class="container">
+    <button id="get-location-btn" class="btn btn-primary mb-3">現在地を取得</button>
+    <p id="latitude" class="mb-3"></p>
+    <p id="longitude" class="mb-3"></p>
+
+
+
+
+
+
     <h1>レストラン一覧</h1>
     {% for restaurant in restaurants %}
         <div class="card mb-3" style="max-width: 540px;">
@@ -29,5 +38,5 @@
 
     {% endfor %}
 </div>
-
+<script src="{% static 'js/geolocation.js' %}"></script>
 {% endblock content %}
