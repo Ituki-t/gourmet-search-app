@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 
 from .hotpepper import restaurants_list
 
@@ -19,3 +20,4 @@ def detail(request, restaurant_id):
                 'restaurant': restaurant,
             }
             return render(request, 'restaurants/detail.html', context)
+    return redirect('index') # 後で404エラーにする
