@@ -5,13 +5,15 @@ document.getElementById('get-location-btn').onclick = function() {
 }
 
 function successCallback(position){
+    console.log(position.coords.latitude);
+    console.log(position.coords.longitude);
 
-    alert('位置情報を取得しました。');
+    alert('緯度: ' + position.coords.latitude + '\n経度: ' + position.coords.longitude);
     var latitude = position.coords.latitude;
-    document.getElementById('latitude').innerHTML = latitude;
+    document.getElementById('latitude').value = latitude;
 
     var longitude = position.coords.longitude;
-    document.getElementById('longitude').innerHTML = longitude;
+    document.getElementById('longitude').value = longitude;
 }
 
 function errorCallback(error){

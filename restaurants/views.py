@@ -3,12 +3,23 @@ from django.shortcuts import redirect
 
 from .hotpepper import restaurants_list
 
+from pprint import pprint
+
 # Create your views here.
 
 def index(request):
-    restaurants = restaurants_list()
+    lat = request.GET.get('lat')
+    lng = request.GET.get('lng')
+    range = request.GET.get('range')
+    # keyword = request.GET.get('keyword')
+
+    restaurants = restaurants_list(lat=lat, lng=lng, range=range)
+    pprint(restaurants)
     context = {
         'restaurants': restaurants,
+        'lat': lat,
+        'lng': lng,
+        'range': range,
     }
     return render(request, 'restaurants/index.html', context)
 

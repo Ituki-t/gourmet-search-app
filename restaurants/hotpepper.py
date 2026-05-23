@@ -7,16 +7,27 @@ load_dotenv()
 api_key = os.getenv('HOTPEPPER_API_KEY')
 api_url = "http://webservice.recruit.co.jp/hotpepper/gourmet/v1/"
 
-def restaurants_list():
+def restaurants_list(lat=None, lng=None, range=3):
     params = {
         'key': api_key,
         'format': 'json',
-        'count': 50, # ここは後から件数を指定できるようにしよう
-        'keyword': '東京',
+        'count': 10, # ここは後から件数を指定できるようにしよう
+        # 'keyword': "ランチ",
+        # 'lat': lat,
+        # 'lng': lng,
+        # 'range': range, # 1:300m, 2:500m, 3:1000m, 4:2000m, 5:3000m
     }
+    if lat:
+        params['lat'] = lat
+        params['lng'] = lng
+        params['range'] = range
+    else:
+        params['keyword'] = '関西' # 東京
+
     res = requests.get(api_url, params=params)
     datas = res.json()
     # print(datas)
+    pprint(params)
 
     restaurants = []
     for data in datas['results']['shop']:
@@ -31,7 +42,10 @@ def restaurants_list():
             'photo': data['photo']['pc']['l'],
             'open': data['open'],
             'close': data['close'],
+            'lat': data['lat'],
+            'lng': data['lng'],
+            # 'range': data['range'],
         }
         restaurants.append(restaurant)
     return restaurants
-pprint(restaurants_list())
+# pprint(restaurants_list())
