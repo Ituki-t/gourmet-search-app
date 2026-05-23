@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 
 from .hotpepper import restaurants_list
+from .hotpepper import restaurant_detail
 
 from pprint import pprint
 
@@ -25,10 +26,12 @@ def index(request):
 
 
 def detail(request, restaurant_id):
-    for restaurant in restaurants_list():
-        if restaurant['id'] == restaurant_id:
-            context = {
-                'restaurant': restaurant,
-            }
-            return render(request, 'restaurants/detail.html', context)
-    return redirect('index') # 後で404エラーにする
+    restaurant = restaurant_detail(restaurant_id)
+
+    if not restaurant:
+        return render(request, 'restaurants/not_found.html')
+
+    context = {
+        'restaurant': restaurant,
+    }
+    return render(request, 'restaurants/detail.html', context)
