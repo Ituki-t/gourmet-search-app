@@ -22,12 +22,13 @@ def restaurants_list(lat=None, lng=None, range=3):
         params['lng'] = lng
         params['range'] = range
     else:
-        params['keyword'] = '関西' # 東京
+        params['large_area'] = 'Z011' # 東京
+
 
     res = requests.get(api_url, params=params)
     datas = res.json()
     # print(datas)
-    pprint(params)
+    # pprint(params)
 
     restaurants = []
     for data in datas['results']['shop']:
@@ -49,3 +50,28 @@ def restaurants_list(lat=None, lng=None, range=3):
         restaurants.append(restaurant)
     return restaurants
 # pprint(restaurants_list())
+
+def restaurant_detail(restaurant_id):
+    params = {
+        'key': api_key,
+        'format': 'json',
+        'id': restaurant_id,
+    }
+    res = requests.get(api_url, params=params)
+    datas = res.json()
+
+    restaurant = {
+        'id': datas['results']['shop'][0]['id'],
+        'name': datas['results']['shop'][0]['name'],
+        'url': datas['results']['shop'][0]['urls']['pc'],
+        'access': datas['results']['shop'][0]['access'],
+        'address': datas['results']['shop'][0]['address'],
+        'genre': datas['results']['shop'][0]['genre']['name'],
+        'budget': datas['results']['shop'][0]['budget']['name'],
+        'photo': datas['results']['shop'][0]['photo']['pc']['l'],
+        'open': datas['results']['shop'][0]['open'],
+        'close': datas['results']['shop'][0]['close'],
+        'lat': datas['results']['shop'][0]['lat'],
+        'lng': datas['results']['shop'][0]['lng'],
+    }
+    return restaurant
