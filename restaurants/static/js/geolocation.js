@@ -1,8 +1,7 @@
-document.getElementById('get-location-btn').onclick = function() {
-    // Geolocation APIを使用して現在地を取得
-    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-    alert('位置情報を取得しています。');
-}
+
+// Geolocation APIを使用して現在地を取得
+navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+
 
 function successCallback(position){
     console.log(position.coords.latitude);
