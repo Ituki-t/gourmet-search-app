@@ -1,8 +1,4 @@
 
-// Geolocation APIを使用して現在地を取得
-navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-
-
 function successCallback(position){
     console.log('緯度: ' + position.coords.latitude, '経度: ' + position.coords.longitude);
 
@@ -33,6 +29,9 @@ window.addEventListener('load', function() {
     if (lat && lng) {
         document.getElementById('latitude').value = lat;
         document.getElementById('longitude').value = lng;
+    } else {
+        // Geolocation APIを使用して現在地を取得
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
     }
 
     if (range) {
