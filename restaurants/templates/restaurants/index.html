@@ -6,17 +6,11 @@
 
 <div class="container">
     <form method="get" class="mb-3">
-    <!-- <button type="button" id="get-location-btn" class="btn btn-primary mb-3">現在地を取得</button> -->
-    <input type="hidden" id="latitude" name="lat">
-    <input type="hidden" id="longitude" name="lng">
-    <select name="range" id="range" class="form-select mb-3" style="width: auto;">
-        <option value="1">300m</option>
-        <option value="2">500m</option>
-        <option value="3" selected>1000m</option>
-        <option value="4">2000m</option>
-        <option value="5">3000m</option>
-    </select>
-    <button type="submit" class="btn btn-success mb-3">検索</button>
+        <!-- <button type="button" id="get-location-btn" class="btn btn-primary mb-3">現在地を取得</button> -->
+        <input type="hidden" id="latitude" name="lat">
+        <input type="hidden" id="longitude" name="lng">
+        {{ form.range }}
+        <button type="submit" class="btn btn-success mb-3">検索</button>
     </form>
 
     <p>現在地: {{ lat }}, {{ lng }}, 範囲: {{ range }}, 検索結果: {{ results_available }}</p>

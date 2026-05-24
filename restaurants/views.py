@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 
+from .forms import SearchForm
 from .hotpepper import restaurants_list
 from .hotpepper import restaurant_detail
 
@@ -11,7 +12,11 @@ from pprint import pprint
 def index(request):
     lat = request.GET.get('lat')
     lng = request.GET.get('lng')
-    range_value = request.GET.get('range')
+    range_value = 3 # デフォルトの検索範囲（1000m）
+
+    form = SearchForm(request.GET)
+    if form.is_valid():
+        range_value = form.cleaned_data['range']
     # keyword = request.GET.get('keyword')
 
     # ページング
@@ -38,6 +43,7 @@ def index(request):
         'page': page,
         'prev_page': prev_page,
         'next_page': next_page,
+        'form': form,
     }
     return render(request, 'restaurants/index.html', context)
 
