@@ -20,13 +20,23 @@ function errorCallback(error){
     console.error('位置情報の取得に失敗しました。');
 }
 
+const rangeElement = document.getElementById('range');
+rangeElement.addEventListener('change', function() {
+    sessionStorage.setItem('range', rangeElement.value);
+})
 
 window.addEventListener('load', function() {
     const lat = sessionStorage.getItem('lat');
     const lng = sessionStorage.getItem('lng');
+    const range = sessionStorage.getItem('range');
 
     if (lat && lng) {
         document.getElementById('latitude').value = lat;
         document.getElementById('longitude').value = lng;
     }
+
+    if (range) {
+        document.getElementById('range').value = range;
+    }
 })
+

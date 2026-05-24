@@ -9,7 +9,7 @@
     <!-- <button type="button" id="get-location-btn" class="btn btn-primary mb-3">現在地を取得</button> -->
     <input type="hidden" id="latitude" name="lat">
     <input type="hidden" id="longitude" name="lng">
-    <select name="range" class="form-select mb-3" style="width: auto;">
+    <select name="range" id="range" class="form-select mb-3" style="width: auto;">
         <option value="1">300m</option>
         <option value="2">500m</option>
         <option value="3" selected>1000m</option>
@@ -43,6 +43,9 @@
         </div>
 
     {% endfor %}
+
+
+
 </div>
 <script src="{% static 'js/geolocation.js' %}"></script>
 {% endblock content %}
