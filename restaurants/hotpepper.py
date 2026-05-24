@@ -14,11 +14,9 @@ def restaurants_list(lat=None, lng=None, range=3, start=1):
         'count': 10,
         'start': start,
         # 'keyword': "ランチ",
-        # 'lat': lat,
-        # 'lng': lng,
-        # 'range': range, # 1:300m, 2:500m, 3:1000m, 4:2000m, 5:3000m
     }
-    if lat:
+
+    if lat not in [None, '', 'None'] and lng not in [None, '', 'None']:
         params['lat'] = lat
         params['lng'] = lng
         params['range'] = range
