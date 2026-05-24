@@ -4,10 +4,9 @@ navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 
 
 function successCallback(position){
-    console.log(position.coords.latitude);
-    console.log(position.coords.longitude);
+    console.log('緯度: ' + position.coords.latitude, '経度: ' + position.coords.longitude);
 
-    alert('緯度: ' + position.coords.latitude + '\n経度: ' + position.coords.longitude);
+    // alert('緯度: ' + position.coords.latitude + '\n経度: ' + position.coords.longitude);
     var latitude = position.coords.latitude;
     document.getElementById('latitude').value = latitude;
 
@@ -16,5 +15,5 @@ function successCallback(position){
 }
 
 function errorCallback(error){
-    alert('位置情報の取得に失敗しました。');
+    console.error('位置情報の取得に失敗しました。');
 }
