@@ -7,13 +7,13 @@ load_dotenv()
 api_key = os.getenv('HOTPEPPER_API_KEY')
 api_url = "http://webservice.recruit.co.jp/hotpepper/gourmet/v1/"
 
-def restaurants_list(lat=None, lng=None, range=3, start=1):
+def restaurants_list(lat=None, lng=None, range=3, start=1, keyword=None):
     params = {
         'key': api_key,
         'format': 'json',
         'count': 10,
         'start': start,
-        # 'keyword': "ランチ",
+        'keyword': keyword,
     }
 
     if lat not in [None, '', 'None'] and lng not in [None, '', 'None']:

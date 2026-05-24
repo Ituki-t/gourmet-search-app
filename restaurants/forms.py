@@ -16,3 +16,12 @@ class SearchForm(forms.Form):
             'id': 'range',
         }),
     )
+    keyword = forms.CharField(
+        label='キーワード',
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'id': 'keyword',
+            'placeholder': '例: ランチ',
+        }),
+    )

@@ -13,18 +13,19 @@ def index(request):
     lat = request.GET.get('lat')
     lng = request.GET.get('lng')
     range_value = 3 # デフォルトの検索範囲（1000m）
+    keyword = None
 
     form = SearchForm(request.GET)
     if form.is_valid():
         range_value = form.cleaned_data['range']
-    # keyword = request.GET.get('keyword')
+        keyword = form.cleaned_data['keyword']
 
     # ページング
     page = int(request.GET.get('page', 1))
     count = int(request.GET.get('count', 10)) # 1ページあたりの件数
     start = (page - 1) * count + 1
 
-    restaurants, results_available = restaurants_list(lat=lat, lng=lng, range=range_value, start=start)
+    restaurants, results_available = restaurants_list(lat=lat, lng=lng, range=range_value, start=start, keyword=keyword)
 
     # pprint(restaurants)
     print(type(page))
