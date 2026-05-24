@@ -6,14 +6,18 @@ from pprint import pprint
 load_dotenv()
 api_key = os.getenv('HOTPEPPER_API_KEY')
 api_url = "http://webservice.recruit.co.jp/hotpepper/gourmet/v1/"
+genre_url = "http://webservice.recruit.co.jp/hotpepper/genre/v1/"
+budget_url = "http://webservice.recruit.co.jp/hotpepper/budget/v1/"
 
-def restaurants_list(lat=None, lng=None, range=3, start=1, keyword=None):
+def restaurants_list(lat=None, lng=None, range=3, start=1, keyword=None, genre=None, budget=None):
     params = {
         'key': api_key,
         'format': 'json',
         'count': 10,
         'start': start,
         'keyword': keyword,
+        'genre': genre,
+        'budget': budget,
     }
 
     if lat not in [None, '', 'None'] and lng not in [None, '', 'None']:
@@ -75,3 +79,40 @@ def restaurant_detail(restaurant_id):
         'lng': datas['results']['shop'][0]['lng'],
     }
     return restaurant
+
+
+def get_genre_list():
+    params = {
+        'key': api_key,
+        'format': 'json',
+    }
+    res = requests.get(genre_url, params=params)
+    datas = res.json()
+
+    genres = []
+    for data in datas['results']['genre']:
+        genre = {
+            'code': data['code'],
+            'name': data['name'],
+        }
+        genres.append(genre)
+    return genres
+print(get_genre_list())
+
+def get_budget_list():
+    params = {
+        'key': api_key,
+        'format': 'json',
+    }
+    res = requests.get(budget_url, params=params)
+    datas = res.json()
+
+    budgets = []
+    for data in datas['results']['budget']:
+        budget = {
+            'code': data['code'],
+            'name': data['name'],
+        }
+        budgets.append(budget)
+    return budgets
+print(get_budget_list())

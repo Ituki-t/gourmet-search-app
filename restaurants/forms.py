@@ -1,4 +1,6 @@
 from django import forms
+from .hotpepper import get_genre_list
+from .hotpepper import get_budget_list
 
 class SearchForm(forms.Form):
     range = forms.ChoiceField(
@@ -23,5 +25,28 @@ class SearchForm(forms.Form):
             'class': 'form-control',
             'id': 'keyword',
             'placeholder': '例: ランチ',
+        }),
+    )
+    genre = forms.ChoiceField(
+        label='ジャンルを選択',
+        required=False,
+        choices=[
+            ('', '選択してください'),
+        ] + [(genre['code'], genre['name']) for genre in get_genre_list()],
+        widget=forms.Select(attrs={
+            'class': 'form-control',
+            'id': 'genre',
+        }),
+    )
+    budget = forms.ChoiceField(
+        label='予算を選択',
+        required=False,
+        choices=[
+            ('', '選択してください'),
+        ] + [(budget['code'], budget['name']) for budget in get_budget_list()],
+
+        widget=forms.Select(attrs={
+            'class': 'form-control',
+            'id': 'budget',
         }),
     )
