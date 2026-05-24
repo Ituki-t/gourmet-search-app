@@ -14,13 +14,14 @@ def index(request):
     range = request.GET.get('range')
     # keyword = request.GET.get('keyword')
 
-    restaurants = restaurants_list(lat=lat, lng=lng, range=range)
+    restaurants, results_available = restaurants_list(lat=lat, lng=lng, range=range)
     pprint(restaurants)
     context = {
         'restaurants': restaurants,
         'lat': lat,
         'lng': lng,
         'range': range,
+        'results_available': results_available,
     }
     return render(request, 'restaurants/index.html', context)
 
