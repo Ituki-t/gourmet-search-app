@@ -1,10 +1,13 @@
 .restaurant-img {
-    height: 240px;
+    height: 280px;
     object-fit: cover;
 }
 
 .card-title {
     min-height: 60px;
+}
+.card-body {
+    padding: 14px;
 }
 
 .card-text.access-text {
