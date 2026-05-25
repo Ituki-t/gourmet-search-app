@@ -13,7 +13,7 @@ def index(request):
     lat = request.GET.get('lat')
     lng = request.GET.get('lng')
     range_value = 3 # デフォルトの検索範囲（1000m）
-    keyword = None
+    keyword = '' # デフォルトのキーワード
     genre = None
     budget = None
 
