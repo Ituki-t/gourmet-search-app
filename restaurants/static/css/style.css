@@ -13,3 +13,9 @@
 .card-text.access-text {
     min-height: 72px;
 }
+
+
+.detail-img {
+    height: 400px;
+    object-fit: cover;
+}
