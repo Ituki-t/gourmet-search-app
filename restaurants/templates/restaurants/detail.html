@@ -50,12 +50,12 @@
             </div>
         </div>
     </div>
+    <p>
+        <a href="{% url 'index' %}?lat={{ request.GET.lat }}&lng={{ request.GET.lng }}&range={{ request.GET.range }}&keyword={{ request.GET.keyword }}&genre={{ request.GET.genre }}&budget={{ request.GET.budget }}&page={{ request.GET.page }}">
+            検索ページに戻る
+        </a>
+    </p>
 </div>
-<p>
-    <a href="{% url 'index' %}?lat={{ request.GET.lat }}&lng={{ request.GET.lng }}&range={{ request.GET.range }}&keyword={{ request.GET.keyword }}&genre={{ request.GET.genre }}&budget={{ request.GET.budget }}&page={{ request.GET.page }}">
-        検索ページに戻る
-    </a>
-</p>
 
 
 
