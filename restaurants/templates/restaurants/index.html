@@ -5,18 +5,43 @@
 {% block content %}
 
 <div class="container">
-    <form method="get" class="mb-3">
-        <!-- <button type="button" id="get-location-btn" class="btn btn-primary mb-3">現在地を取得</button> -->
-        <input type="hidden" id="latitude" name="lat">
-        <input type="hidden" id="longitude" name="lng">
-        {{ form.range.label_tag }} {{ form.range }}
-        {{ form.keyword.label_tag }} {{ form.keyword }}
-        {{ form.genre.label_tag }} {{ form.genre }}
-        {{ form.budget.label_tag }} {{ form.budget }}
-        <button type="submit" class="btn btn-success mb-3">検索</button>
-    </form>
+    <div class="container mt-5">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h1 class="card-title mb-4">レストラン検索</h1>
 
-    <p>現在地: {{ lat }}, {{ lng }}, 範囲: {{ range }}, 検索結果: {{ results_available }}</p>
+                <form method="get">
+                    <input type="hidden" id="latitude" name="lat">
+                    <input type="hidden" id="longitude" name="lng">
+
+                    <div class="mb-3">
+                        {{ form.range.label_tag }}
+                        {{ form.range }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.keyword.label_tag }}
+                        {{ form.keyword }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.genre.label_tag }}
+                        {{ form.genre }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.budget.label_tag }}
+                        {{ form.budget }}
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">
+                        検索
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+<p>現在地: {{ lat }}, {{ lng }}, 範囲: {{ range }}, 検索結果: {{ results_available }}</p>
     <h1>レストラン一覧</h1>
     {% for restaurant in restaurants %}
         <div class="card mb-3" style="max-width: 540px;">
