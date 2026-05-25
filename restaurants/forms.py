@@ -24,7 +24,7 @@ class SearchForm(forms.Form):
         widget=forms.TextInput(attrs={
             'class': 'form-control',
             'id': 'keyword',
-            'placeholder': '例: ランチ',
+            'placeholder': '例: ランチ, 店名 など',
         }),
     )
     genre = forms.ChoiceField(
