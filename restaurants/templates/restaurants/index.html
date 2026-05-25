@@ -50,7 +50,7 @@
 
         <div class="card h-100 shadow-sm">
 
-            <a href="{% url 'detail' restaurant.id %}"
+            <a href="{% url 'detail' restaurant.id %}?lat={{ lat }}&lng={{ lng }}&range={{ range }}&keyword={{ keyword }}&genre={{ genre }}&budget={{ budget }}&page={{ page }}"
                class="text-decoration-none text-dark">
 
                 <img src="{{ restaurant.photo }}"
