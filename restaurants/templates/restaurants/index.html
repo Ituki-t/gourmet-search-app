@@ -43,29 +43,48 @@
     </div>
 <p>現在地: {{ lat }}, {{ lng }}, 範囲: {{ range }}, 検索結果: {{ results_available }}</p>
     <h1>レストラン一覧</h1>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
     {% for restaurant in restaurants %}
-        <div class="card mb-3" style="max-width: 540px;">
-            <a href="{% url 'detail' restaurant.id %}" class="text-decoration-none text-dark">
-            <div class="row g-0">
-                <div class="col-md-4">
-                <img src="{{ restaurant.photo }}" class="img-fluid rounded-start" alt="{{ restaurant.name }}">
-                </div>
-                <div class="col-md-8">
+    <div class="col">
+
+        <div class="card h-100 shadow-sm">
+
+            <a href="{% url 'detail' restaurant.id %}"
+               class="text-decoration-none text-dark">
+
+                <img src="{{ restaurant.photo }}"
+                     class="card-img-top restaurant-img"
+                     alt="{{ restaurant.name }}">
+
                 <div class="card-body">
-                    <h5 class="card-title">{{ restaurant.name }}</h5>
-                    <p class="card-text">{{ restaurant.access }}</p>
-                    <!-- <p class="card-text">{{ restaurant.address }}</p> -->
-                    <!-- <p class="card-text">{{ restaurant.genre }}</p> -->
-                    <p class="card-text">予算: {{ restaurant.budget }}</p>
-                    <p class="card-text"><small class="text-body-secondary">{{ restaurant.genre }}</small></p>
+                    <h5 class="card-title">
+                        {{ restaurant.name }}
+                    </h5>
+
+                    <p class="card-text">
+                        {{ restaurant.access }}
+                    </p>
+
+                    <p class="card-text">
+                        予算: {{ restaurant.budget }}
+                    </p>
+
+                    <p class="card-text">
+                        <small class="text-body-secondary">
+                            {{ restaurant.genre }}
+                        </small>
+                    </p>
                 </div>
-                </div>
-            </div>
+
             </a>
+
         </div>
 
+    </div>
     {% endfor %}
 
+</div>
 <!-- ページング -->
 {% if prev_page or next_page %}
 <nav aria-label="Page navigation">

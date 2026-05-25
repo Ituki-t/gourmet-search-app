@@ -1,0 +1,12 @@
+.restaurant-img {
+    height: 240px;
+    object-fit: cover;
+}
+
+.card-title {
+    min-height: 60px;
+}
+
+.card-text.access-text {
+    min-height: 72px;
+}
