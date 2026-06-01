@@ -1,9 +1,5 @@
-console.log('geolocation.js が読み込まれました');
 
 function successCallback(position){
-    console.log('緯度: ' + position.coords.latitude, '経度: ' + position.coords.longitude);
-
-    // alert('緯度: ' + position.coords.latitude + '\n経度: ' + position.coords.longitude);
     const latitude = position.coords.latitude;
     document.getElementById('latitude').value = latitude;
     sessionStorage.setItem('lat', latitude);
@@ -36,7 +32,6 @@ window.addEventListener('load', function() {
     }
 
     setInterval(() => {
-        console.log('1分ごとの位置情報取得を実行します');
         navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
     }, 60000); // 1分ごとに位置情報を更新
 
