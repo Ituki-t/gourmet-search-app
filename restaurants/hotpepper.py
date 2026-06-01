@@ -1,7 +1,6 @@
 import requests
 import os
 from dotenv import load_dotenv
-from pprint import pprint
 
 load_dotenv()
 api_key = os.getenv('HOTPEPPER_API_KEY')
@@ -31,8 +30,6 @@ def restaurants_list(lat=None, lng=None, range=3, start=1, keyword=None, genre=N
     datas = res.json()
     results_available = datas['results']['results_available']
     print(results_available)
-    # print(datas)
-    # pprint(params)
 
     restaurants = []
     for data in datas['results']['shop']:
@@ -49,11 +46,9 @@ def restaurants_list(lat=None, lng=None, range=3, start=1, keyword=None, genre=N
             'close': data['close'],
             'lat': data['lat'],
             'lng': data['lng'],
-            # 'range': data['range'],
         }
         restaurants.append(restaurant)
     return restaurants, datas['results']['results_available']
-# pprint(restaurants_list())
 
 def restaurant_detail(restaurant_id):
     params = {

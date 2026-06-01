@@ -5,8 +5,6 @@ from .forms import SearchForm
 from .hotpepper import restaurants_list
 from .hotpepper import restaurant_detail
 
-from pprint import pprint
-
 # Create your views here.
 
 def index(request):
