@@ -31,11 +31,6 @@ def index(request):
 
     restaurants, results_available = restaurants_list(lat=lat, lng=lng, range=range_value, start=start, keyword=keyword, genre=genre, budget=budget)
 
-    # pprint(restaurants)
-    print(type(page))
-    print(type(results_available))
-    print(type(count))
-
     prev_page = page - 1 if page > 1 else None
     next_page = page + 1 if results_available > page * count else None
 
