@@ -28,7 +28,6 @@ def restaurants_list(lat=None, lng=None, range=3, start=1, keyword=None, genre=N
 
     res = requests.get(api_url, params=params)
     datas = res.json()
-    results_available = datas['results']['results_available']
 
     restaurants = []
     for data in datas['results']['shop']:
