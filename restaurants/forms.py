@@ -1,6 +1,6 @@
 from django import forms
-from .hotpepper import get_genre_list
-from .hotpepper import get_budget_list
+from .hotpepper import get_genre_list, get_budget_list
+
 
 class SearchForm(forms.Form):
     range = forms.ChoiceField(
@@ -18,6 +18,7 @@ class SearchForm(forms.Form):
             'id': 'range',
         }),
     )
+
     keyword = forms.CharField(
         label='キーワード',
         required=False,
@@ -27,26 +28,46 @@ class SearchForm(forms.Form):
             'placeholder': '例: ランチ, 店名 など',
         }),
     )
+
     genre = forms.ChoiceField(
         label='ジャンルを選択',
         required=False,
-        choices=[
-            ('', '選択してください'),
-        ] + [(genre['code'], genre['name']) for genre in get_genre_list()],
+        choices=[('', '選択してください')],
         widget=forms.Select(attrs={
             'class': 'form-control',
             'id': 'genre',
         }),
     )
+
     budget = forms.ChoiceField(
         label='予算を選択',
         required=False,
-        choices=[
-            ('', '選択してください'),
-        ] + [(budget['code'], budget['name']) for budget in get_budget_list()],
-
+        choices=[('', '選択してください')],
         widget=forms.Select(attrs={
             'class': 'form-control',
             'id': 'budget',
         }),
     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        try:
+            self.fields['genre'].choices = [
+                ('', '選択してください'),
+            ] + [
+                (genre['code'], genre['name'])
+                for genre in get_genre_list()
+            ]
+        except Exception:
+            self.fields['genre'].choices = [('', '選択してください')]
+
+        try:
+            self.fields['budget'].choices = [
+                ('', '選択してください'),
+            ] + [
+                (budget['code'], budget['name'])
+                for budget in get_budget_list()
+            ]
+        except Exception:
+            self.fields['budget'].choices = [('', '選択してください')]
