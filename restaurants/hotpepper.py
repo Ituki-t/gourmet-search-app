@@ -29,7 +29,6 @@ def restaurants_list(lat=None, lng=None, range=3, start=1, keyword=None, genre=N
     res = requests.get(api_url, params=params)
     datas = res.json()
     results_available = datas['results']['results_available']
-    print(results_available)
 
     restaurants = []
     for data in datas['results']['shop']:
@@ -92,7 +91,6 @@ def get_genre_list():
         }
         genres.append(genre)
     return genres
-print(get_genre_list())
 
 def get_budget_list():
     params = {
@@ -110,4 +108,3 @@ def get_budget_list():
         }
         budgets.append(budget)
     return budgets
-print(get_budget_list())
