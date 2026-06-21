@@ -31,26 +31,27 @@ def restaurants_list(lat=None, lng=None, range=3, start=1, keyword=None, genre=N
 
     results = datas.get('results', {})
     shops = results.get('shop', [])
+    results_available = results.get('results_available', 0)
 
     restaurants = []
 
     for data in shops:
         restaurant = {
-            'id': data['id'],
-            'name': data['name'],
-            'url': data['urls']['pc'],
-            'access': data['access'],
-            'address': data['address'],
-            'genre': data['genre']['name'],
-            'budget': data['budget']['name'],
-            'photo': data['photo']['pc']['l'],
-            'open': data['open'],
-            'close': data['close'],
-            'lat': data['lat'],
-            'lng': data['lng'],
+            "id": data.get("id"),
+            "name": data.get("name"),
+            "url": data.get("urls", {}).get("pc"),
+            "access": data.get("access"),
+            "address": data.get("address"),
+            "genre": data.get("genre", {}).get("name"),
+            "budget": data.get("budget", {}).get("name"),
+            "photo": data.get("photo", {}).get("pc", {}).get("l"),
+            "open": data.get("open"),
+            "close": data.get("close"),
+            "lat": data.get("lat"),
+            "lng": data.get("lng"),
         }
         restaurants.append(restaurant)
-    return restaurants, datas['results']['results_available']
+    return restaurants, results_available
 
 def restaurant_detail(restaurant_id):
     params = {
@@ -61,19 +62,27 @@ def restaurant_detail(restaurant_id):
     res = requests.get(api_url, params=params)
     datas = res.json()
 
+    results = datas.get('results', {})
+    shops = results.get('shop', [])
+
+    if not shops:
+        return None
+
+    data = shops[0]
+
     restaurant = {
-        'id': datas['results']['shop'][0]['id'],
-        'name': datas['results']['shop'][0]['name'],
-        'url': datas['results']['shop'][0]['urls']['pc'],
-        'access': datas['results']['shop'][0]['access'],
-        'address': datas['results']['shop'][0]['address'],
-        'genre': datas['results']['shop'][0]['genre']['name'],
-        'budget': datas['results']['shop'][0]['budget']['name'],
-        'photo': datas['results']['shop'][0]['photo']['pc']['l'],
-        'open': datas['results']['shop'][0]['open'],
-        'close': datas['results']['shop'][0]['close'],
-        'lat': datas['results']['shop'][0]['lat'],
-        'lng': datas['results']['shop'][0]['lng'],
+        "id": data.get("id"),
+        "name": data.get("name"),
+        "url": data.get("urls", {}).get("pc"),
+        "access": data.get("access"),
+        "address": data.get("address"),
+        "genre": data.get("genre", {}).get("name"),
+        "budget": data.get("budget", {}).get("name"),
+        "photo": data.get("photo", {}).get("pc", {}).get("l"),
+        "open": data.get("open"),
+        "close": data.get("close"),
+        "lat": data.get("lat"),
+        "lng": data.get("lng"),
     }
     return restaurant
 
@@ -86,11 +95,14 @@ def get_genre_list():
     res = requests.get(genre_url, params=params)
     datas = res.json()
 
+    results = datas.get('results', {})
+    genre_datas = results.get('genre', [])
+
     genres = []
-    for data in datas['results']['genre']:
+    for data in genre_datas:
         genre = {
-            'code': data['code'],
-            'name': data['name'],
+            'code': data.get('code'),
+            'name': data.get('name'),
         }
         genres.append(genre)
     return genres
@@ -103,8 +115,11 @@ def get_budget_list():
     res = requests.get(budget_url, params=params)
     datas = res.json()
 
+    results = datas.get('results', {})
+    budget_datas = results.get('budget', [])
+
     budgets = []
-    for data in datas['results']['budget']:
+    for data in budget_datas:
         budget = {
             'code': data['code'],
             'name': data['name'],
